@@ -32,6 +32,7 @@ const outputDir = target ? 'output/' + target : 'output';
 const vueConfig = {
   transpiler: { format: 'esm' },
   asyncComponentImports: true,
+  typescript: true,
 };
 
 /**
@@ -43,9 +44,18 @@ module.exports = {
   // Each run needs a separate output dest, as Mitosis clears it first.
   dest: [outputDir],
   options: {
-    react: { transpiler: { format: 'esm', languages: ['ts'] } },
-    solid: { transpiler: { languages: ['ts'] } },
+    react: {
+      transpiler: { format: 'esm' },
+      typescript: true,
+    },
+    solid: {
+      transpiler: { format: 'esm', },
+      typescript: true,
+    },
     vue2: vueConfig,
-    vue3: {...vueConfig, api: 'composition'},
+    vue3: { ...vueConfig, api: 'composition' },
+    qwik: {
+      typescript: true
+    }
   },
 };
